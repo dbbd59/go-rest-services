@@ -1,0 +1,14 @@
+.idea/
+.DS_Store
+
+runtime/*
+!runtime/qrcode/bg.jpg
+!runtime/fonts
+
+vendor/*
+!vendor/vendor.json
+coverage.out
+count.out
+test
+profile.out
+tmp.out
