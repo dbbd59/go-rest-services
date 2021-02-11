@@ -50,6 +50,7 @@ func GetGhTrends(c *gin.Context) GhTrends {
 	if err != nil {
 		log.Fatalln(err)
 	}
+
 	ght, _ := unmarshalGhTrends(body)
 	return ght
 }

@@ -3,6 +3,7 @@ package routers
 import (
 	gh_trends_service "goRestServices/service/gh_service"
 	"goRestServices/service/hn_service"
+	"goRestServices/service/skills_service"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,6 +17,7 @@ func InitRouter() *gin.Engine {
 	{
 		apiv1.GET("/hn/:story", hn_service.HackerNews)
 		apiv1.GET("/ghtrends", gh_trends_service.GhTrends)
+		apiv1.GET("/skills", skills_service.GhSkills)
 	}
 	return r
 }
