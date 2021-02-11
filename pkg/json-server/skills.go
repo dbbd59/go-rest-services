@@ -1,4 +1,4 @@
-package skills
+package jsonServer
 
 import (
 	"encoding/json"
@@ -22,16 +22,12 @@ func (r *Skills) marshal() ([]byte, error) {
 }
 
 type Skill struct {
-	Date        string `json:"date"`
-	Company     string `json:"company"`
-	Link        string `json:"link"`
-	LinkDisplay string `json:"linkDisplay"`
-	JobTitle    string `json:"jobTitle"`
-	Descr       string `json:"descr"`
+	Name string  `json:"name"`
+	Perc float64 `json:"perc"`
 }
 
 func GetSkills(c *gin.Context) Skills {
-	resp, err := http.Get("https://my-json-server.typicode.com/dbbd59/json_server/jobs")
+	resp, err := http.Get("https://my-json-server.typicode.com/dbbd59/json_server/skills")
 	if err != nil {
 		log.Fatalln(err)
 	}
