@@ -20,6 +20,12 @@ type Server struct {
 
 var ServerSetting = &Server{}
 
+type Db struct {
+	ConnUrl string
+}
+
+var DbSetting = &Db{}
+
 var cfg *ini.File
 
 func Setup() {
@@ -31,6 +37,7 @@ func Setup() {
 
 	mapTo("app", AppSetting)
 	mapTo("server", ServerSetting)
+	mapTo("db", DbSetting)
 
 }
 

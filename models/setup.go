@@ -1,20 +1,23 @@
 package models
 
 import (
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/sqlite"
+	"goRestServices/setting"
+
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
 var DB *gorm.DB
 
 func ConnectDatabase() {
-	database, err := gorm.Open("sqlite3", "test.db")
+	dsn := setting.DbSetting.ConnUrl
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
 		panic("Failed to connect to database!")
 	}
 
-	database.AutoMigrate(&Book{})
+	db.AutoMigrate(&Book{})
 
-	DB = database
+	DB = db
 }
