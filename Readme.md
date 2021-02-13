@@ -3,6 +3,7 @@
 ## Installation
 
 ```go
+go mod download
 go install
 ```
 

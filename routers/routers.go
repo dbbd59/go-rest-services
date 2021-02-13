@@ -1,6 +1,7 @@
 package routers
 
 import (
+	"goRestServices/service/books_service"
 	gh_trends_service "goRestServices/service/gh_service"
 	"goRestServices/service/hn_service"
 	"goRestServices/service/jsonserver_service"
@@ -21,6 +22,10 @@ func InitRouter() *gin.Engine {
 		apiv1.GET("/jobs", jsonserver_service.GetJobs)
 		apiv1.GET("/skills", jsonserver_service.GetSkills)
 		apiv1.GET("/news", news_api_service.GetNews)
+		apiv1.GET("/books", books_service.FindBooks)
+		apiv1.POST("/books", books_service.CreateBook)
+		apiv1.PATCH("/books/:id", books_service.UpdateBook)
+		apiv1.DELETE("/books/:id", books_service.DeleteBook)
 	}
 	return r
 }
