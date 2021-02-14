@@ -8,11 +8,14 @@ import (
 	news_api_service "goRestServices/service/news_service"
 	"goRestServices/service/skills_service"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 func InitRouter() *gin.Engine {
 	r := gin.New()
+
+	r.Use(cors.Default())
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 
