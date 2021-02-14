@@ -6,6 +6,7 @@ import (
 	"goRestServices/service/hn_service"
 	"goRestServices/service/jobs_service"
 	news_api_service "goRestServices/service/news_service"
+	"goRestServices/service/skills_service"
 
 	"github.com/gin-gonic/gin"
 )
@@ -37,13 +38,13 @@ func InitRouter() *gin.Engine {
 			jobs.DELETE("/:id", jobs_service.DeleteJob)
 		}
 
-		/* 	skills := apiv1.Group("/skills")
+		skills := apiv1.Group("/skills")
 		{
-			skills.GET("", books_service.FindBooks)
-			skills.POST("", books_service.CreateBook)
-			skills.PATCH("/:id", books_service.UpdateBook)
-			skills.DELETE("/:id", books_service.DeleteBook)
-		} */
+			skills.GET("", skills_service.FindSkills)
+			skills.POST("", skills_service.CreateSkill)
+			skills.PATCH("/:id", skills_service.UpdateSkill)
+			skills.DELETE("/:id", skills_service.DeleteSkill)
+		}
 	}
 	return r
 }
