@@ -9,7 +9,7 @@ import (
 
 var DB *gorm.DB
 
-func ConnectDatabase() {
+func SetupAndConnectDatabase() {
 	dsn := setting.DbSetting.ConnUrl
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
@@ -17,7 +17,7 @@ func ConnectDatabase() {
 		panic("Failed to connect to database!")
 	}
 
-	db.AutoMigrate(&Book{})
+	db.AutoMigrate(&Book{}, &Job{}, &Skill{})
 
 	DB = db
 }

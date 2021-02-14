@@ -4,7 +4,7 @@ import (
 	"goRestServices/service/books_service"
 	gh_trends_service "goRestServices/service/gh_service"
 	"goRestServices/service/hn_service"
-	"goRestServices/service/jsonserver_service"
+	"goRestServices/service/jobs_service"
 	news_api_service "goRestServices/service/news_service"
 
 	"github.com/gin-gonic/gin"
@@ -19,13 +19,31 @@ func InitRouter() *gin.Engine {
 	{
 		apiv1.GET("/hn/:story", hn_service.HackerNews)
 		apiv1.GET("/ghtrends", gh_trends_service.GhTrends)
-		apiv1.GET("/jobs", jsonserver_service.GetJobs)
-		apiv1.GET("/skills", jsonserver_service.GetSkills)
 		apiv1.GET("/news", news_api_service.GetNews)
-		apiv1.GET("/books", books_service.FindBooks)
-		apiv1.POST("/books", books_service.CreateBook)
-		apiv1.PATCH("/books/:id", books_service.UpdateBook)
-		apiv1.DELETE("/books/:id", books_service.DeleteBook)
+
+		books := apiv1.Group("/books")
+		{
+			books.GET("", books_service.FindBooks)
+			books.POST("", books_service.CreateBook)
+			books.PATCH("/:id", books_service.UpdateBook)
+			books.DELETE("/:id", books_service.DeleteBook)
+		}
+
+		jobs := apiv1.Group("/jobs")
+		{
+			jobs.GET("", jobs_service.FindJobs)
+			jobs.POST("", jobs_service.CreateJob)
+			jobs.PATCH("/:id", jobs_service.UpdateJob)
+			jobs.DELETE("/:id", jobs_service.DeleteJob)
+		}
+
+		/* 	skills := apiv1.Group("/skills")
+		{
+			skills.GET("", books_service.FindBooks)
+			skills.POST("", books_service.CreateBook)
+			skills.PATCH("/:id", books_service.UpdateBook)
+			skills.DELETE("/:id", books_service.DeleteBook)
+		} */
 	}
 	return r
 }

@@ -12,12 +12,11 @@ import (
 
 func init() {
 	setting.Setup()
+	models.SetupAndConnectDatabase()
 }
 
 func main() {
 	gin.SetMode(setting.ServerSetting.RunMode)
-
-	models.ConnectDatabase()
 
 	routersInit := routers.InitRouter()
 	endPoint := fmt.Sprintf(":%d", setting.ServerSetting.HttpPort)
