@@ -1,7 +1,9 @@
 package setting
 
 import (
+	"fmt"
 	"log"
+	"os"
 
 	"gopkg.in/ini.v1"
 )
@@ -15,7 +17,7 @@ var AppSetting = &App{}
 
 type Server struct {
 	RunMode  string
-	HttpPort int
+	HttpPort string
 }
 
 var ServerSetting = &Server{}
@@ -46,4 +48,14 @@ func mapTo(section string, v interface{}) {
 	if err != nil {
 		log.Fatalf("Cfg.MapTo %s err: %v", section, err)
 	}
+}
+
+func GetEndpoint() string {
+	port := os.Getenv("PORT")
+
+	if port == "" {
+		port = ServerSetting.HttpPort
+	}
+	endPoint := fmt.Sprintf(":%s", port)
+	return endPoint
 }
