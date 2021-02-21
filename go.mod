@@ -1,7 +1,7 @@
 module goRestServices
 
-// +heroku goVersion go1.15
-go 1.15
+// +heroku goVersion go1.16
+go 1.16
 
 require (
 	github.com/PaulRosset/go-hacknews v0.0.0-20170815075127-4aad99273a3c
